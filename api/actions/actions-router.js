@@ -53,7 +53,7 @@ function validateActionId(req, res, next) {
         req.action = action;
         next();
       } else {
-        res.status(400).json({ message: "Invalid action id" });
+        res.status(404).json({ message: "Invalid action id" });
       }
     })
     .catch((err) => {

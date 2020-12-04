@@ -76,7 +76,7 @@ function validateProjectId(req, res, next) {
         req.project = project;
         next();
       } else {
-        res.status(400).json({ message: "Invalid project id" });
+        res.status(404).json({ message: "Invalid project id" });
       }
     })
     .catch((err) => {
