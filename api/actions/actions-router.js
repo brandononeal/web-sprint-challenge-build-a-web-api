@@ -20,7 +20,16 @@ router.get("/:id", validateActionId, (req, res) => {
   res.status(200).json(req.action);
 });
 
-router.post("/", [validateActionId, validateAction], (req, res) => {});
+router.post("/", validateAction, (req, res) => {
+  Action.insert(req.body)
+    .then((action) => {
+      res.status(201).json(action);
+    })
+    .catch((err) => {
+      console.log(err.message);
+      res.status(500).json({ message: "Error creating the action" });
+    });
+});
 
 router.put("/:id", [validateActionId, validateAction], (req, res) => {
   Action.update(req.params.id, req.body)
@@ -63,8 +72,10 @@ function validateActionId(req, res, next) {
 }
 
 function validateAction(req, res, next) {
-  if (!req.body.description || !req.body.notes) {
-    res.status(400).json({ message: "Please provide a description and notes" });
+  if (!req.body.description || !req.body.notes || !req.body.project_id) {
+    res
+      .status(400)
+      .json({ message: "Please provide description, notes, and project id" });
   } else {
     next();
   }

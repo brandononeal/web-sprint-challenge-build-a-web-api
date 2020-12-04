@@ -87,7 +87,7 @@ function validateProjectId(req, res, next) {
 
 function validateProject(req, res, next) {
   if (!req.body.name || !req.body.description) {
-    res.status(400).json({ message: "Please provide a name and description" });
+    res.status(400).json({ message: "Please provide name and description" });
   } else {
     next();
   }
