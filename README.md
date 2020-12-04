@@ -29,13 +29,13 @@ The description of the structure and extra information about each _resource_ sto
 
 #### Actions
 
-| Field       | Data Type | Metadata                                                                                         |
-| ----------- | --------- | ------------------------------------------------------------------------------------------------ |
-| id          | number    | no need to provide it when creating posts, the database will automatically generate it           |
-| project_id  | number    | required, must be the id of an existing project                                                  |
-| description | string    | up to 128 characters long, required                                                              |
-| notes       | string    | no size limit, required. Used to record additional notes or requirements to complete the action  |
-| completed   | boolean   | used to indicate if the action has been completed, not required                                  |
+| Field       | Data Type | Metadata                                                                                        |
+| ----------- | --------- | ----------------------------------------------------------------------------------------------- |
+| id          | number    | no need to provide it when creating posts, the database will automatically generate it          |
+| project_id  | number    | required, must be the id of an existing project                                                 |
+| description | string    | up to 128 characters long, required                                                             |
+| notes       | string    | no size limit, required. Used to record additional notes or requirements to complete the action |
+| completed   | boolean   | used to indicate if the action has been completed, not required                                 |
 
 ### Database Persistence Helpers
 
@@ -57,10 +57,19 @@ We have provided test data for all the resources.
 Be prepared to demonstrate your understanding of this week's concepts by answering questions on the following topics. You might prepare by writing down your own answers before hand.
 
 1. The core features of Node.js and Express and why they are useful.
+   Node.js is a runtime environment that allows Javascript to be run outside of the browser and Express is a minimalist framework for building web APIs
+
 1. Understand and explain the use of Middleware.
+   Middleware are functions that have access to the request object, response object, and the next middleware function. Middleware is used to make changes to the data coming from the server before it reaches the client
+
 1. The basic principles of the REST architectural style.
+   REST stands for Representational State Transfer and is an architectural style for designing networked applications. REST is a client-server architecture that is stateless, cacheable, provides a uniform interface, and is a layered system
+
 1. Understand and explain the use of Express Routers.
+   Routing determines how an application responds to a client request to a particular endpoint. Routing can be used to simplify your Express application into smaller, more specific files that target specific endpoints
+
 1. Describe tooling used to manually test the correctness of an API.
+   Postman and HTTPie are two examples of tooling used to test an API. They allow us to hit our endpoints and test to see if our API is functioning correctly
 
 ## Instructions
 
@@ -92,20 +101,23 @@ A _"test"_ script already exists you can use to run tests against your code.
 #### Build an API
 
 - [ ] Inside `api/actions/actions-router.js` build endpoints for performing CRUD operations on _actions_:
+
   - `[GET] /api/actions` sends an array of actions (or an empty array) as the body of the _response_.
   - `[GET] /api/actions/:id` sends an action with the given `id` as the body of the _response_.
   - `[POST] /api/actions` sends the newly created action as the body of the _response_.
-  - `[PUT] /api/actions` sends the updated action as the body of the _response_.
-  - `[DELETE] /api/actions` sends no _response_ body.
+  - `[PUT] /api/actions/:id` sends the updated action as the body of the _response_.
+  - `[DELETE] /api/actions/:id` sends no _response_ body.
 
 - [ ] Inside `api/projects/projects-router.js` build endpoints for performing CRUD operations on _projects_:
+
   - `[GET] /api/projects` sends an array of projects (or an empty array) as the body of the response.
   - `[GET] /api/projects/:id` sends a project with the given `id` as the body of the _response_.
   - `[POST] /api/projects` sends the newly created project as the body of the _response_.
-  - `[PUT] /api/projects` sends the updated project as the body of the _response_.
-  - `[DELETE] /api/projects` sends no _response_ body.
+  - `[PUT] /api/projects/:id` sends the updated project as the body of the _response_.
+  - `[DELETE] /api/projects/:id` sends no _response_ body.
 
 - [ ] Inside `api/projects/projects-router.js` add an endpoint for retrieving the list of actions for a project:
+
   - `[GET] /api/projects/:id/actions` sends an array of actions (or an empty array) as the body of the response.
 
 - [ ] When adding an action, make sure the `project_id` provided belongs to an existing `project`.
